@@ -1,9 +1,0 @@
-{
-	"books":[
-		{"productID":1,"name":"红楼梦","author":"曹雪芹","type":"言情","price":"10086","img":"/static/books/hlm.jpg"},
-		{"productID":2,"name":"西游记","author":"吴承恩","type":"小说","price":"10010","img":"/static/books/xyj.jpg"},
-		{"productID":3,"name":"水浒传","author":"施耐庵","type":"武侠","price":"12306","img":"/static/books/shz.jpg"},
-		{"productID":4,"name":"三国演义","author":"罗贯中","type":"历史","price":"12580","img":"/static/books/sgyy.jpg"}
-	]
-
-}
