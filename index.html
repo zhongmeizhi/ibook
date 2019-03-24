@@ -3,7 +3,6 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<meta name="description" content="钟美志,简历,个人简历,简历模板,个人简历模板,简历模板下载,个人网站">
@@ -35,22 +34,30 @@
 		}
 		.content-box .me-list li::before {
 			content: '';
-			width: 1px;
 			border-left: 2px solid blue;
+			padding-right: 2px;
 		}
-		.content-box .me-list li .a {
+		.content-box .me-list li a {
 			color: gray;
 		}
+		@media screen and (min-width: 769px) {
+			.content-box .me-list {
+				display: flex;
+				justify-content: space-around;
+			}
+			.content-box .me-list li::before {
+				border-left: none;
+			}
+			.content-box .me-list li a {
+				color: #409eff;
+			}
+		}
 	</style>
-	<!-- <script src="src/js/compat.js"></script> -->
-	<!-- <script src="src/js/flexiable.js"></script> -->
 </head>
 
 <body>
 
 	<section id="mainBox">
-		<!--<h1 class="h-title">钟美志的个人网站</h1>-->
-		<!-- <canvas id="homeCanvas" ></canvas> -->
 		<div class="content-box">
 			<ul class="me-list">
 				<li>
@@ -60,7 +67,13 @@
 					<a href="production.html">个人作品</a>
 				</li>
 				<li>
-					<a href="share.html">知识分享</a>
+					<a href="https://github.com/zhongmeizhi/">PC端个人网站</a>
+				</li>
+				<li>
+					<a href="https://github.com/zhongmeizhi/">GitHub</a>
+				</li>
+				<li>
+					<a href="https://zhongmeizhi.gitbook.io/md/">GitBook</a>
 				</li>
 			</ul>
 		</div>
