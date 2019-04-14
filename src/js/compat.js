@@ -1,4 +1,4 @@
-import onStateLoaded from './ready';
+import onStateLoaded from '@/js/ready';
 
 onStateLoaded(function () {
   // 鉴别手机端
