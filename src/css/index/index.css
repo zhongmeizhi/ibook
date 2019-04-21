@@ -1,0 +1,40 @@
+
+#mainBox {
+  position: relative;
+}
+#mainBox .h-title {
+  text-align: center;
+}
+#homeCanvas {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+.content-box {
+  font-size: 1.2rem;
+  padding-top: 3.6rem;
+}
+.content-box .me-list li {
+  padding: 0.26rem 1.2rem;
+}
+.content-box .me-list li::before {
+  content: '';
+  border-left: 1px solid blue;
+  padding-right: 1px;
+}
+.content-box .me-list li a {
+  color: gray;
+}
+@media screen and (min-width: 769px) {
+  .content-box .me-list {
+    display: flex;
+    justify-content: space-around;
+  }
+  .content-box .me-list li::before {
+    border-left: none;
+  }
+  .content-box .me-list li a {
+    color: #409eff;
+  }
+}

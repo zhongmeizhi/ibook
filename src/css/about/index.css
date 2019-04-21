@@ -1,0 +1,38 @@
+
+#mainBox {
+  margin: 1rem;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+}
+h5 {
+  margin: 1rem 0 0.2rem;
+}
+h5:before {
+  content: '';
+  width: 1px;
+  margin-right: 0.3rem;
+  border-left: 1px solid blue;
+}
+.p-info,
+.ul-list {
+  margin: 0 1rem;
+}
+.ul-list {
+  margin-left: 1rem;
+}
+.ul-list p {
+  padding-left: 1rem;
+}
+.ul-list.presentation {
+  list-style-type: decimal;
+  margin-left: 2rem;
+}
+.ul-list.experience li {
+  padding-top: 0.5rem;
+}
+.ul-list.experience li:first-child {
+  padding-top: 0;
+}

@@ -3,11 +3,6 @@ import onStateLoaded from '@/js/ready';
 onStateLoaded(function () {
   // 鉴别手机端
   if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-    function appendDot () {
-      let $dot = document.createElement('script');
-      $dot.src = 'src/js/homeDots.js';
-      document.body.appendChild($dot);
-    }
     function preventPhoneScale () {
       // 同时按下两个手指
       document.addEventListener('touchstart', function (event) {
@@ -25,8 +20,8 @@ onStateLoaded(function () {
         lastTouchEnd = now;
       })
     }
-    appendDot();
     preventPhoneScale();
+    import('./homeDots.js');
   } else {
     // PC模式
     let $PC = document.createElement('div')

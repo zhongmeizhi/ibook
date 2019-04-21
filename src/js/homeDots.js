@@ -96,7 +96,7 @@ function getimgData({imgData, hSize}){
 		for(let y = hSize; y < h; y++){
 			let startIndx = (w*y + x)*4
 			let a = imgData[startIndx + 3];
-			if (a > 126 && !(x % 4) && !(y % 4)) {
+			if (a > 126 && !(x % 4) && !(y % 6)) {
 				let r = imgData[startIndx];
 				let g = imgData[startIndx + 1];
 				let b = imgData[startIndx + 2];
@@ -112,7 +112,7 @@ function getimgData({imgData, hSize}){
 function initData () {
 	drawTitle(configObj);
 	let img = new Image();
-	img.src = './src/img/logo.png'
+	img.src = 'src/img/logo.png'
 	img.onload = function () {
 		ctx.drawImage(img, 0, 0, 61, 67, w/4, h/4, w/2, h/2);
 		let imgData = ctx.getImageData(0, configObj.hSize, w, h).data;

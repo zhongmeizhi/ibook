@@ -7,7 +7,9 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    app: resolve('src/js/compat.js')
+    index: resolve('src/js/index/index.js'),
+    about: resolve('src/js/about/index.js'),
+    production: resolve('src/js/production/index.js'),
   },
   mode: 'development',
   output: {
@@ -50,7 +52,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html',
+      template: 'about.html',
+      inject: true,
+      chunks: ['about']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'production.html',
+      template: 'production.html',
+      inject: true,
+      chunks: ['production']
     })
   ]
 }

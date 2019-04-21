@@ -12,12 +12,14 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    app: resolve('src/js/compat.js')
+    index: resolve('src/js/index/index.js'),
+    about: resolve('src/js/about/index.js'),
+    production: resolve('src/js/production/index.js'),
   },
   mode: 'production',
   output: {
     path: resolve('my-dist'),
-    filename: '[name].js',
+    filename: 'js/[name].js',
   },
   resolve: {
     extensions: ['.js', '.json'],
@@ -81,21 +83,21 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
-        from: resolve('src'),
-        to: resolve('my-dist/src'),
+        from: path.resolve(__dirname, './src/img'),
+        to: path.resolve( __dirname, './my-dist/src/img'),
         ignore: []
       },
       {
-        from: path.resolve(__dirname, '../vue-shop'),
-        to: path.resolve( __dirname, '../my-dist/vue-shop'),
+        from: path.resolve(__dirname, './vue-shop'),
+        to: path.resolve( __dirname, './my-dist/vue-shop'),
         ignore: []
       },
     ]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      chunks: ['app'],
-      css: ['src/css/base.css'],
+      inject: true,
+      chunks: ['index'],
       minify: true,
       cache: true,
       inject: true
@@ -103,12 +105,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'about.html',
       template: 'about.html',
-      inject: false
+      inject: true,
+      chunks: ['about'],
+      minify: true,
+      cache: true,
+      inject: true
     }),
     new HtmlWebpackPlugin({
       filename: 'production.html',
       template: 'production.html',
-      inject: false
+      inject: true,
+      chunks: ['production'],
+      minify: true,
+      cache: true,
+      inject: true
     }),
     // 只能打包JS中引入的css模块
     new MiniCssExtractPlugin({
