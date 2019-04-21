@@ -80,16 +80,16 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      // {
-      //   from: resolve('src'),
-      //   to: resolve('my-dist/src'),
-      //   ignore: []
-      // },
-      // {
-      //   from: path.resolve(__dirname, '../vue-shop'),
-      //   to: path.resolve( __dirname, '../my-dist/vue-shop'),
-      //   ignore: []
-      // },
+      {
+        from: resolve('src'),
+        to: resolve('my-dist/src'),
+        ignore: []
+      },
+      {
+        from: path.resolve(__dirname, '../vue-shop'),
+        to: path.resolve( __dirname, '../my-dist/vue-shop'),
+        ignore: []
+      },
     ]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
