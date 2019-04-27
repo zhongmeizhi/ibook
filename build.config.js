@@ -19,7 +19,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: resolve('my-dist'),
-    filename: 'js/[name].js',
+    filename: 'src/js/[name].js',
   },
   resolve: {
     extensions: ['.js', '.json'],
@@ -122,8 +122,8 @@ module.exports = {
     }),
     // 只能打包JS中引入的css模块
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash].css',
-      chunkFilename: 'css/[id].[hash].css',
+      filename: 'src/css/[name].[hash].css',
+      chunkFilename: 'src/css/[id].[hash].css',
     })
   ]
 }
