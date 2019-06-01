@@ -7,4 +7,4 @@
 工程化方案
 * webpack-dev-server 作为开发环境
 * webpack 打包
-* node express 做灰度测试
+* node + express，运行`npm run prod`做灰度测试

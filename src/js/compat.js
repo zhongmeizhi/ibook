@@ -1,6 +1,11 @@
 import onStateLoaded from '@/js/ready';
+import startDotsAnimation from '@/js/homeDots';
 
 onStateLoaded(function () {
+
+  // 开启动画
+  startDotsAnimation();
+
   // 鉴别手机端
   if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     function preventPhoneScale () {
@@ -20,20 +25,21 @@ onStateLoaded(function () {
         lastTouchEnd = now;
       })
     }
-    preventPhoneScale();
-    import('./homeDots.js');
+  preventPhoneScale();
   } else {
     // PC模式
     let $PC = document.createElement('div')
     $PC.style.cssText = `
       position: fixed;
-      top: 50%;
+      top: 66px;
       left: 50%;
-      transform: translateX(-50%) translateY(-50%);;
+      transform: translateX(-50%);
+      font-size: 16px;
+      text-align: center;
     `
     $PC.innerHTML = `
       <h1>当前打开方式为PC端Web页</h1>
-      <h2>请使用手机模式打开</h2>
+      <h2>请使用手机/手机模式打开</h2>
     `
     document.body.append($PC)
   }

@@ -1,22 +1,19 @@
 
 #mainBox {
   position: relative;
+  min-height: 100%;
 }
 #mainBox .h-title {
   text-align: center;
 }
 #homeCanvas {
-  position: fixed;
   z-index: -1;
-  top: 0;
-  left: 0;
 }
 .content-box {
-  font-size: 1.2rem;
-  padding-top: 3.6rem;
+  padding-top: 15vw;
 }
 .content-box .me-list li {
-  padding: 0.26rem 1.2rem;
+  padding: 1.3vw 4vw;
 }
 .content-box .me-list li::before {
   content: '';
@@ -26,15 +23,19 @@
 .content-box .me-list li a {
   color: gray;
 }
-@media screen and (min-width: 769px) {
-  .content-box .me-list {
-    display: flex;
-    justify-content: space-around;
+@media screen and (min-width: 640px) {
+  body {
+    background: #fff4f0;
   }
-  .content-box .me-list li::before {
-    border-left: none;
+  #mainBox {
+    width: 375px;
+    margin: auto;
+    background: white;
   }
-  .content-box .me-list li a {
-    color: #409eff;
+  #homeCanvas {
+    z-index: 2;
+  }
+  .content-box {
+    display: none;
   }
 }

@@ -1,11 +1,16 @@
 
 let $cvs = document.createElement('canvas');
 $cvs.id = 'homeCanvas';
-let $body = document.body;
-$body.append($cvs);
+$cvs.style.cssText = `
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);`
+let $main = document.getElementById('mainBox');
+$main.append($cvs);
 let ctx = $cvs.getContext('2d');
-let w = $body.clientWidth;
-let h = $body.clientHeight
+let w = $main.offsetWidth;
+let h = $main.offsetHeight
 let configObj = {
 	text: '钟美志的个人网站',
 	hSize: 36,
@@ -163,6 +168,10 @@ function render () {
 	requestAnimationFrame(render)
 }
 
-initData()
-render()
+function startDotsAnimation() {
+	initData()
+	render()
+}
+
+export default startDotsAnimation
 			
