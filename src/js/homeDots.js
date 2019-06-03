@@ -1,4 +1,8 @@
 
+
+// 代码写的比较硬。。。
+// 有空再优化吧
+
 let $cvs = document.createElement('canvas');
 $cvs.id = 'homeCanvas';
 $cvs.style.cssText = `
@@ -8,9 +12,14 @@ $cvs.style.cssText = `
 	transform: translateX(-50%);`
 let $main = document.getElementById('mainBox');
 $main.append($cvs);
+
 let ctx = $cvs.getContext('2d');
 let w = $main.offsetWidth;
-let h = $main.offsetHeight
+let h = $main.offsetHeight;
+ctx.canvas.width = w;
+ctx.canvas.height = h;
+
+// 配置数据
 let configObj = {
 	text: '钟美志的个人网站',
 	hSize: 36,
@@ -22,11 +31,10 @@ let configObj = {
 	pause: false,
 	pauseTime: 20,
 	startTime: 0,
-	randomTimeSize: 50
+	randomTimeSize: 66, // 起跑时间
 }
-ctx.canvas.width = w
-ctx.canvas.height = h;
 
+// 表头
 function drawTitle ({text, hSize}) {
 	ctx.font = `${hSize - 6}px Verdana`;
 	var gradient = ctx.createLinearGradient(0, 0, w, 0);
@@ -39,35 +47,47 @@ function drawTitle ({text, hSize}) {
 	ctx.fillText(text, w/2, hSize);
 }
 
+	// 一个点的
 class Dot {
 	constructor (centerX , centerY , color) {
+		// 当前位置
+		// 以缩放实现Z
 		this.x = centerX;
 		this.y = centerY;
 		this.z = 1;
+		// 起始位置
 		this.tx = w / 4 + Math.random() * w / 2;
 		this.ty = Math.random() * h + h / 4;
+		// 起始位置
 		this.sx = w / 2;
 		this.sy = h;
 		this.sz = this.tz = Math.random() * 5;
 		this.color = color;
+		this.axisX = Math.abs(this.x - this.sx) / configObj.floorX;
+		// 半径
 		let radius = configObj.distance + Math.random() * configObj.distance / 2;
 		this.radius = radius;
-		this.axisX = Math.abs(this.x - this.sx) / configObj.floorX;
+		// 起跑时间
 		let startTime = Math.random() * configObj.randomTimeSize;
 		this.startTime = startTime
+		// 完成标记，应该是 isFinish
 		this.finish = false
 	}
 	
 	paint() {
 		ctx.save();
 		ctx.beginPath();
+		// 不在暂停时间段执行
 		if (!configObj.pause) {
+			// 粒子未完成阶段执行
 			if (!this.finish && this.startTime < configObj.startTime) {
+				// x轴运动
 				if (this.sx < this.x) {
 					this.sx += this.axisX;
 				} else {
 					this.sx -= this.axisX;
 				}
+				// y轴运动
 				if (Math.abs(this.y - this.sy) < this.radius) {
 					this.sy = this.y;
 					this.sx = this.x;
@@ -76,6 +96,7 @@ class Dot {
 				} else {
 					this.sy -= this.radius;
 				}
+				// 大小缩放
 				if (this.sz > 1) {
 					this.sz -= 0.07
 				} else {
@@ -95,6 +116,7 @@ class Dot {
 	}
 }
 
+// 获取每个点数据
 function getimgData({imgData, hSize}){
 	let dots = [];
 	for(let x = 0; x < w; x++){
@@ -114,6 +136,7 @@ function getimgData({imgData, hSize}){
 	return dots;
 }
 
+// 初始化数据
 function initData () {
 	drawTitle(configObj);
 	let img = new Image();
@@ -126,6 +149,7 @@ function initData () {
 	}
 }
 
+// 绘画过程
 function drawDot () {
 	ctx.clearRect(0, configObj.hSize, w, h);
 	if (configObj.finishNum && configObj.finishNum === configObj.dots.length) {
@@ -155,6 +179,7 @@ function drawDot () {
 				})
 			}
 		}
+		// 起跑时间
 		configObj.startTime++
 		configObj.dots.forEach(dot => {
 			dot.paint();
@@ -162,12 +187,14 @@ function drawDot () {
 	}
 }
 
+// 渲染函数
 function render () {
 	ctx.clearRect(0, configObj.hSize, w, h);
 	drawDot();
 	requestAnimationFrame(render)
 }
 
+// main方法
 function startDotsAnimation() {
 	initData()
 	render()
