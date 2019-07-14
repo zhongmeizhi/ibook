@@ -16,17 +16,18 @@ let configObj = {
 	hSize: 36,
 	dots: [],
 	state: 'dispersed',
-	distance: 8,
-	floorX: 50,
+	distance: 12, // 步长
+	floorX: 30,
 	finishNum: 0,
 	pause: false,
-	pauseTime: 20,
+	pauseTime: 20, // 暂停时间
 	startTime: 0,
-	randomTimeSize: 50
+	randomTimeSize: 100, // 起跑时间
 }
 ctx.canvas.width = w
 ctx.canvas.height = h;
 
+// 标题部分
 function drawTitle ({text, hSize}) {
 	ctx.font = `${hSize - 6}px Verdana`;
 	var gradient = ctx.createLinearGradient(0, 0, w, 0);
@@ -39,16 +40,17 @@ function drawTitle ({text, hSize}) {
 	ctx.fillText(text, w/2, hSize);
 }
 
+// 点部分
 class Dot {
 	constructor (centerX , centerY , color) {
 		this.x = centerX;
 		this.y = centerY;
 		this.z = 1;
-		this.tx = w / 4 + Math.random() * w / 2;
-		this.ty = Math.random() * h + h / 4;
-		this.sx = w / 2;
-		this.sy = h;
-		this.sz = this.tz = Math.random() * 5;
+		this.sx = w / 2; // 第一种起始位置X
+		this.sy = h; // 第一种起始位置Y
+		this.tx = w / 4 + Math.random() * w / 2; // 第二种起始位置X
+		this.ty = Math.random() * h + h / 4; // 第二种起始位置Y
+		this.sz = this.tz = 1 + Math.random() * 4; // 模拟Z轴
 		this.color = color;
 		let radius = configObj.distance + Math.random() * configObj.distance / 2;
 		this.radius = radius;
@@ -57,11 +59,14 @@ class Dot {
 		this.startTime = startTime
 		this.finish = false
 	}
-	
+
+	// 图片终点和起跑判断
 	paint() {
 		ctx.save();
 		ctx.beginPath();
 		if (!configObj.pause) {
+			// TODO 动画效果根据状态单独配置
+			// configObj.state === 'bottom'
 			if (!this.finish && this.startTime < configObj.startTime) {
 				if (this.sx < this.x) {
 					this.sx += this.axisX;
@@ -76,15 +81,15 @@ class Dot {
 				} else {
 					this.sy -= this.radius;
 				}
-				if (this.sz > 1) {
+				if (this.sz > 2) {
 					this.sz -= 0.07
 				} else {
 					this.sz += 0.07
 				}
 				if (this.sx === this.x && this.sy === this.y) {
 					configObj.finishNum++
-					this.finish = true
-					this.sz = 1
+					this.finish = true;
+					this.sz = 2; // 两倍大小
 				}
 			}
 		}
@@ -95,13 +100,15 @@ class Dot {
 	}
 }
 
+// 获取图片中的点
 function getimgData({imgData, hSize}){
 	let dots = [];
 	for(let x = 0; x < w; x++){
 		for(let y = hSize; y < h; y++){
 			let startIndx = (w*y + x)*4
 			let a = imgData[startIndx + 3];
-			if (a > 126 && !(x % 4) && !(y % 6)) {
+			// 要清楚的，而且6个中只要1个
+			if (a > 200 && !(x % 6) && !(y % 6)) {
 				let r = imgData[startIndx];
 				let g = imgData[startIndx + 1];
 				let b = imgData[startIndx + 2];
@@ -126,6 +133,7 @@ function initData () {
 	}
 }
 
+// 画点
 function drawDot () {
 	ctx.clearRect(0, configObj.hSize, w, h);
 	if (configObj.finishNum && configObj.finishNum === configObj.dots.length) {
