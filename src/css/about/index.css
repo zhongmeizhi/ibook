@@ -1,9 +1,9 @@
 
 #mainBox {
   padding: 4vw;
-  animation: heightGrow 3s forwards;
+  /* animation: heightGrow 3s forwards; */
 }
-@keyframes heightGrow {
+/* @keyframes heightGrow {
   0% {
     height: 0;
     overflow: hidden;
@@ -15,7 +15,7 @@
   100% {
     overflow: auto;
   }
-}
+} */
 h1 {
   text-align: center;
   margin-bottom: 1vw;
