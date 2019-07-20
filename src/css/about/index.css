@@ -1,21 +1,11 @@
 
 #mainBox {
   padding: 4vw;
-  /* animation: heightGrow 3s forwards; */
+  margin-bottom: 6vw;
 }
-/* @keyframes heightGrow {
-  0% {
-    height: 0;
-    overflow: hidden;
-  }
-  99% {
-    height: 100%;
-    overflow: hidden;
-  }
-  100% {
-    overflow: auto;
-  }
-} */
+.zmz-info >div {
+  opacity: 0;  
+}
 h1 {
   text-align: center;
   margin-bottom: 1vw;
