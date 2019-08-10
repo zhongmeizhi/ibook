@@ -38,8 +38,7 @@ onStateLoaded(function () {
       text-align: center;
     `
     $PC.innerHTML = `
-      <h1>当前打开方式为PC端Web页</h1>
-      <h2>请使用手机/手机模式打开</h2>
+      <h1>本站点仅支持手机模式</h1>
     `
     document.body.append($PC)
   }
