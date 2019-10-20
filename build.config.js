@@ -93,37 +93,52 @@ module.exports = {
         ignore: []
       },
     ]),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true,
-      chunks: ['index'],
-      minify: true,
-      cache: true,
-      inject: true
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'about.html',
-      template: 'about.html',
-      inject: true,
-      chunks: ['about'],
-      minify: true,
-      cache: true,
-      inject: true
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'production.html',
-      template: 'production.html',
-      inject: true,
-      chunks: ['production'],
-      minify: true,
-      cache: true,
-      inject: true
-    }),
+    injectChunk('index'),
+    injectChunk('about'),
+    injectChunk('production'),
+    // new HtmlWebpackPlugin({
+    //   filename: 'index.html',
+    //   template: 'index.html',
+    //   inject: true,
+    //   chunks: ['index'],
+    //   minify: true,
+    //   cache: true,
+    //   inject: true
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'about.html',
+    //   template: 'about.html',
+    //   inject: true,
+    //   chunks: ['about'],
+    //   minify: true,
+    //   cache: true,
+    //   inject: true
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'production.html',
+    //   template: 'production.html',
+    //   inject: true,
+    //   chunks: ['production'],
+    //   minify: true,
+    //   cache: true,
+    //   inject: true
+    // }),
     // 只能打包JS中引入的css模块
     new MiniCssExtractPlugin({
       filename: 'src/css/[name].[hash].css',
       chunkFilename: 'src/css/[id].[hash].css',
     })
   ]
+}
+
+function injectChunk(name) {
+  return new HtmlWebpackPlugin({
+    filename: name + '.html',
+    template: name + '.html',
+    inject: true,
+    chunks: [name],
+    minify: true,
+    cache: true,
+    inject: true
+  })
 }

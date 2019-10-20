@@ -50,7 +50,7 @@ class Dot {
 		this.sy = h; // 第一种起始位置Y
 		this.tx = w / 4 + Math.random() * w / 2; // 第二种起始位置X
 		this.ty = Math.random() * h + h / 4; // 第二种起始位置Y
-		this.sz = this.tz = 1 + Math.random() * 4; // 模拟Z轴
+		this.sz = this.tz = 2 + Math.random() * 6; // 模拟Z轴
 		this.color = color;
 		let radius = configObj.distance + Math.random() * configObj.distance / 2;
 		this.radius = radius;
@@ -108,11 +108,11 @@ function getimgData({imgData, hSize}){
 			let startIndx = (w*y + x)*4
 			let a = imgData[startIndx + 3];
 			// 要清楚的，而且6个中只要1个
-			if (a > 200 && !(x % 6) && !(y % 6)) {
+			if (a > 111 && !(x % 6) && !(y % 6)) {
 				let r = imgData[startIndx];
 				let g = imgData[startIndx + 1];
 				let b = imgData[startIndx + 2];
-				let color = `rgba(${r}, ${g}, ${b}, ${a})`;
+				let color = `rgba(${r}, ${g}, ${b * Math.random()}, ${a * Math.random()})`;
 				let dot = new Dot(x, y, color);
 				dots.push(dot);
 			}
